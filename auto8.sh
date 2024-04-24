@@ -42,6 +42,4 @@ echo "    MINING  XENBLOCKS    "
 echo "     auto8.sh     "
 echo "-------------------------"
 
-tail -f /root/XENGPUMiner/miner.log
 
-timeout 1780 tail -f /root/XENGPUMiner/miner.log
