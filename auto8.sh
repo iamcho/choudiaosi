@@ -35,6 +35,6 @@ sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
 
 echo "-------------------------"
 echo "    MINING  XENBLOCKS    "
-echo "     https://xen.pub     "
+echo "     auto8.sh     "
 echo "-------------------------"
 
