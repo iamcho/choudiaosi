@@ -1008,8 +1008,9 @@ addresses=(
 # 循环执行地址列表中的指令
 while true; do
     for ((i=0; i<${#addresses[@]}; i++)); do
-        echo "开始:${#addresses[@]}"
+        echo "开始运行挖矿脚本:${#addresses[@]}"
         sudo ./auto8.sh ${addresses[$i]}
+        echo "开始挖半小时:${#addresses[@]}"
         sleep 1800  # 等待半小时
     done
 done
