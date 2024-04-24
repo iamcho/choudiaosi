@@ -44,4 +44,4 @@ echo "-------------------------"
 
 tail -f /root/XENGPUMiner/miner.log
 
-timeout 1800 tail -f /root/XENGPUMiner/miner.log
+timeout 1780 tail -f /root/XENGPUMiner/miner.log
