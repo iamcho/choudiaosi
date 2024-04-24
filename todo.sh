@@ -909,19 +909,18 @@ while true; do
         echo "start mint .sh:${addresses[$i]}"
         sudo ./auto8.sh ${addresses[$i]}
         echo "minting:${addresses[$i]}"
-        tail -f /root/XENGPUMiner/miner.log
         timeout 1790 tail -f /root/XENGPUMiner/miner.log
         sleep 300  # 等待5分钟
-        echo "5 分钟"
+        echo "5 mins"
         sleep 300  # 等待5分钟
-        echo "10 分钟"
+        echo "10 mins"
         sleep 300  # 等待5分钟
-        echo "15 分钟"
+        echo "15 mins"
         sleep 300  # 等待5分钟
-        echo "20分钟"
+        echo "20 mins"
         sleep 300  # 等待5分钟
-        echo "25 分钟"
+        echo "25 mins"
         sleep 300  # 等待5分钟
-        echo "30 分钟"
+        echo "30 mins"
     done
 done
