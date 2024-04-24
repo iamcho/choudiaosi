@@ -20,10 +20,10 @@ echo "STEP 4 of 10: Installed cMake"
 sudo apt -y install python3-pip > /dev/null 2>&1
 echo "STEP 5 of 10: Installed Python"
 
-sudo git clone https://github.com/iamcho/XENGPUMiner.git > /dev/null 2>&1
-echo "STEP 6 of 10: Cloned https://github.com/iamcho/XENGPUMiner.git"
+sudo git clone https://github.com/iamcho/XENGPUMinerRoy.git > /dev/null 2>&1
+echo "STEP 6 of 10: Cloned https://github.com/iamcho/XENGPUMinerRoy.git"
 
-cd XENGPUMiner
+cd XENGPUMinerRoy
 sudo chmod +x build.sh > /dev/null 2>&1
 sudo ./build.sh > /dev/null 2>&1
 echo "STEP 7 of 10: Permissions set!"
@@ -58,4 +58,4 @@ echo "    MINING  XENBLOCKS    "
 echo "     https://xen.pub     "
 echo "-------------------------"
 echo " "
-tail -f /root/XENGPUMiner/miner.log
+tail -f /root/XENGPUMinerRoy/miner.log
