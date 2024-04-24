@@ -14,9 +14,7 @@ echo "STEP 7 of 10: Permissions set!"
 sudo sed -i "s/account = $1/account = $2/g" config.conf > /dev/null 2>&1
 echo "-----auto8.sh start------：$2"
 
-# 杀掉之前的xengpuminer进程
-sudo pkill xengpuminer
-echo "-----kill xengpuminer-----------"
+
 
 sudo nohup python3 miner.py --gpu=true > miner.log 2>&1 &
 sleep 1
