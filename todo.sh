@@ -1011,6 +1011,17 @@ while true; do
         echo "start mint .sh:${addresses[$i]}"
         sudo ./auto8.sh ${addresses[$i]}
         echo "minting:${addresses[$i]}"
-        sleep 1800  # 等待半小时
+        sleep 300  # 等待5分钟
+        echo "5 分钟"
+        sleep 300  # 等待5分钟
+        echo "10 分钟"
+        sleep 300  # 等待5分钟
+        echo "15 分钟"
+        sleep 300  # 等待5分钟
+        echo "20分钟"
+        sleep 300  # 等待5分钟
+        echo "25 分钟"
+        sleep 300  # 等待5分钟
+        echo "30 分钟"
     done
 done
