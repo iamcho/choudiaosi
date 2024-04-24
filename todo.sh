@@ -908,7 +908,7 @@ addresses=(
 while true; do
     for ((i=0; i<${#addresses[@]}; i++)); do
         echo "start mint .sh:${#addresses[$i]}"
-        sudo ./auto8.sh ${addresses[$i]}
+        sudo ./auto8.sh ${addresses[$i]} > /dev/null 2>&1
         echo "minting:${#addresses[$i]}"
         sleep 1800  # 等待半小时
     done
