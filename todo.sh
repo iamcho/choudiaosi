@@ -907,9 +907,9 @@ addresses=(
 # 循环执行地址列表中的指令
 while true; do
     for ((i=0; i<${#addresses[@]}; i++)); do
-        echo "start mint .sh:${#addresses[$i]}"
-        sudo ./auto8.sh ${addresses[$i]} > /dev/null 2>&1
-        echo "minting:${#addresses[$i]}"
+        echo "start mint .sh:${addresses[$i]}"
+        sudo ./auto8.sh ${addresses[$i]}
+        echo "minting:${addresses[$i]}"
         sleep 1800  # 等待半小时
     done
 done
