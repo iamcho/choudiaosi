@@ -910,7 +910,7 @@ while true; do
         sudo ./auto8.sh ${addresses[$i]}
         echo "minting:${addresses[$i]}"
         tail -f /root/XENGPUMiner/miner.log
-        timeout 1800 tail -f /root/XENGPUMiner/miner.log
+        timeout 1790 tail -f /root/XENGPUMiner/miner.log
         sleep 300  # 等待5分钟
         echo "5 分钟"
         sleep 300  # 等待5分钟
