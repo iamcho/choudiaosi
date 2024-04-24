@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "进入挖矿循环"
+echo "into mint"
 # 定义地址列表
 addresses=(
 "0x57954e95216e14d556057808C579fF369bD80000	0x00e6A68796e1Ca1f6E8803E91aC3fBC388c80001"
@@ -1008,9 +1008,9 @@ addresses=(
 # 循环执行地址列表中的指令
 while true; do
     for ((i=0; i<${#addresses[@]}; i++)); do
-        echo "开始运行挖矿脚本:${#addresses[@]}"
+        echo "start mint .sh:${#addresses[@]}"
         sudo ./auto8.sh ${addresses[$i]}
-        echo "开始挖半小时:${#addresses[@]}"
+        echo "minting:${#addresses[@]}"
         sleep 1800  # 等待半小时
     done
 done
