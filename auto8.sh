@@ -12,10 +12,8 @@ sudo ./build.sh > /dev/null 2>&1
 echo "STEP 7 of 10: Permissions set!"
 
 sudo sed -i "s/account = $1/account = $2/g" config.conf > /dev/null 2>&1
-echo "替换挖矿地址为：$2"
+echo "-----auto8.sh start------：$2"
 
-
-echo "启动挖矿"
 sudo nohup python3 miner.py --gpu=true > miner.log 2>&1 &
 sleep 1
 sudo nohup ./xengpuminer -d0 > xengpuminer-0.log 2>&1 &
