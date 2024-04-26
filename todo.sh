@@ -938,8 +938,12 @@ sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
 
 # 循环执行地址列表中的指令
 while true; do
-    for ((i=0; i<${#addresses[@]}; i++)); do
-        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$i" > /dev/null &
+    for element in "${my_array[@]}"
+    do
+        # 使用read命令将其分割成两个字符串
+        read first_part second_part <<< "$element"
+        sudo sed -i "s/account = $first_part/account = $second_part/g" config.conf > /dev/null 2>&1
+        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$second_part" > /dev/null &
         tail -f /root/XENGPUMiner/miner.log &
         pid=$!
         sleep 1800  # 等待30分钟
