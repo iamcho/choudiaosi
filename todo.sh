@@ -3,7 +3,7 @@
 echo "into mint"
 # 定义地址列表
 addresses=(
-"0x57954e95216e14d556057808C579fF369bD80000	0xA4f8F0c939B592270a430da0AF2E7368D9C80104"
+"0x0E6A934b223552F46c1135A993f6155cE9dddddd	0xA4f8F0c939B592270a430da0AF2E7368D9C80104"
 "0xA4f8F0c939B592270a430da0AF2E7368D9C80104 0x0a72DF69389c33E9E89d355501aA4C840B080105"
 "0x0a72DF69389c33E9E89d355501aA4C840B080105 0x9Ab18d401FA58639eAF26fB4B25a1A4Cc8680106"
 "0x9Ab18d401FA58639eAF26fB4B25a1A4Cc8680106 0x81F3a78dF542d23Bc2dF8724152C6E64E0980107"
@@ -938,8 +938,7 @@ sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
 
 # 循环执行地址列表中的指令
 while true; do
-    for element in "${my_array[@]}"
-    do
+    for element in "${my_array[@]}";do
         # 使用read命令将其分割成两个字符串
         read first_part second_part <<< "$element"
         sudo sed -i "s/account = $first_part/account = $second_part/g" config.conf > /dev/null 2>&1
