@@ -910,6 +910,7 @@ while true; do
     for element in "${my_array[@]}";do
         # 使用read命令将其分割成两个字符串
         read first_part second_part <<< "$element"
+        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$second_part" > /dev/null &
         cd XENGPUMiner
         sudo chmod +x build.sh > /dev/null 2>&1
         sudo ./build.sh > /dev/null 2>&1
@@ -931,7 +932,6 @@ while true; do
         sudo nohup ./xengpuminer -d6 > xengpuminer-6.log 2>&1 &
         sleep 1
         sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
-        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$second_part" > /dev/null &
         tail -f /root/XENGPUMiner/miner.log &
         pid=$!
         sleep 1800  # 等待30分钟
