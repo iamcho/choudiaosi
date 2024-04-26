@@ -940,7 +940,8 @@ sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
 while true; do
     for ((i=0; i<${#addresses[@]}; i++)); do
         echo "start mint .sh:${addresses[$i]}"
-        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$addresses[$i]" > /dev/null &
+        original_string = (${addresses[$i]}).replace(" ", "-")
+        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$original_string" > /dev/null &
         tail -f /root/XENGPUMiner/miner.log &
         pid=$!
         sleep 1800  # 等待30分钟
