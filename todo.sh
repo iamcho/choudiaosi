@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo "into mint"
+echo "into mint 1111111111111111111111111111111111111"
 # 定义地址列表
 addresses=(
-"0x31DCab3b0847A6a057472918A364403159FFFfFF	0xA4f8F0c939B592270a430da0AF2E7368D9C80104"
+"0x0a72DF69389c33E9E89d355501aA4C840B080105	0xA4f8F0c939B592270a430da0AF2E7368D9C80104"
 "0xA4f8F0c939B592270a430da0AF2E7368D9C80104 0x0a72DF69389c33E9E89d355501aA4C840B080105"
 "0x0a72DF69389c33E9E89d355501aA4C840B080105 0x9Ab18d401FA58639eAF26fB4B25a1A4Cc8680106"
 "0x9Ab18d401FA58639eAF26fB4B25a1A4Cc8680106 0x81F3a78dF542d23Bc2dF8724152C6E64E0980107"
@@ -916,7 +916,7 @@ while true; do
     for element in "${addresses[@]}";do
         echo "$element"
         read -r first_part second_part <<< "$element"
-        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=挖$second_part" > /dev/null &
+        # curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=挖$second_part" > /dev/null &
         # cd XENGPUMiner
         # sudo chmod +x build.sh > /dev/null 2>&1
         # sudo ./build.sh > /dev/null 2>&1
@@ -954,8 +954,8 @@ while true; do
                 sudo nohup ./xengpuminer -d$i > "xengpuminer-$i.log" 2>&1 &
                 sleep 1
             done
-            echo "------------log--------------"
-            tail -f /root/XENGPUMiner/miner.log &
+            echo "------------log 2222222222222222222222222222222222222--------------"
+            timeout tail -f /root/XENGPUMiner/miner.log &
             tail_pid=$!  # 记录 tail 进程的PID
             start_timer  # 等待30分钟
             kill "$tail_pid"  # 结束 tail 进程
