@@ -1,9 +1,5 @@
 #!/bin/bash
 
-echo "-------------------------"
-echo "       XENBLOCKS         "
-echo "    STARTING INSTALL     "
-echo "-------------------------"
 
 
 cd XENGPUMiner
@@ -12,10 +8,11 @@ sudo ./build.sh > /dev/null 2>&1
 echo "STEP 7 of 10: Permissions set!"
 
 sudo sed -i "s/account = $1/account = $2/g" config.conf > /dev/null 2>&1
-echo "-----auto8.sh start------：$2"
+echo "Replaced ETH address"
 
 
 
+echo "STEP 10 of 10: Starting Miner & GPU"
 sudo nohup python3 miner.py --gpu=true > miner.log 2>&1 &
 sleep 1
 sudo nohup ./xengpuminer -d0 > xengpuminer-0.log 2>&1 &
@@ -35,9 +32,5 @@ sleep 1
 sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
 
 
-echo "-------------------------"
-echo "    MINING  XENBLOCKS    "
-echo "     auto8.sh     "
-echo "-------------------------"
-
-
+echo "mint $2"
+tail -f /root/XENGPUMiner/miner.log
