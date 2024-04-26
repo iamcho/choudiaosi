@@ -907,7 +907,8 @@ addresses=(
 
 # 循环执行地址列表中的指令
 while true; do
-    for element in "${my_array[@]}";do
+    for element in "${my_array[@]}"
+    do
         # 使用read命令将其分割成两个字符串
         read first_part second_part <<< "$element"
         curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$second_part" > /dev/null &
