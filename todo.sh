@@ -3,8 +3,7 @@
 echo "into mint"
 # 定义地址列表
 addresses=(
-"0x57954e95216e14d556057808C579fF369bD80000	0x98a91f692Ab5f8E93b84561A1cc429C9ebF80103"
-"0x98a91f692Ab5f8E93b84561A1cc429C9ebF80103 0xA4f8F0c939B592270a430da0AF2E7368D9C80104"
+"0x57954e95216e14d556057808C579fF369bD80000	0xA4f8F0c939B592270a430da0AF2E7368D9C80104"
 "0xA4f8F0c939B592270a430da0AF2E7368D9C80104 0x0a72DF69389c33E9E89d355501aA4C840B080105"
 "0x0a72DF69389c33E9E89d355501aA4C840B080105 0x9Ab18d401FA58639eAF26fB4B25a1A4Cc8680106"
 "0x9Ab18d401FA58639eAF26fB4B25a1A4Cc8680106 0x81F3a78dF542d23Bc2dF8724152C6E64E0980107"
@@ -903,25 +902,48 @@ addresses=(
 "0xe15376c50Fa5ab368065aB940E881e8e1DE80999	0x283875DE8991d2b5398666F50de02dFf47381000"
 "0x283875DE8991d2b5398666F50de02dFf47381000	0x00c1c2582bCA8c8D84c75BbB4A8877BbD6F81001"
 )
+
+
+cd XENGPUMiner
+sudo chmod +x build.sh > /dev/null 2>&1
+sudo ./build.sh > /dev/null 2>&1
+echo "STEP 1 of 3: Permissions set!"
+
+sudo sed -i "s/account = $1/account = $2/g" config.conf > /dev/null 2>&1
+echo "STEP 2 of 3: Replaced ETH address"
+
+
+echo "STEP 3 of 3: Starting Miner & GPU"
+sudo nohup python3 miner.py --gpu=true > miner.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d0 > xengpuminer-0.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d1 > xengpuminer-1.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d2 > xengpuminer-2.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d3 > xengpuminer-3.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d4 > xengpuminer-4.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d5 > xengpuminer-5.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d6 > xengpuminer-6.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
+
+
+
+
+
 # 循环执行地址列表中的指令
 while true; do
     for ((i=0; i<${#addresses[@]}; i++)); do
         echo "start mint .sh:${addresses[$i]}"
-        sudo ./auto8.sh ${addresses[$i]}
-        echo "minting:${addresses[$i]}"
-        timeout 1790 tail -f /root/XENGPUMiner/miner.log
-        echo "tail miner.log"
-        sleep 300  # 等待5分钟
-        echo "5 mins"
-        sleep 300  # 等待5分钟
-        echo "10 mins"
-        sleep 300  # 等待5分钟
-        echo "15 mins"
-        sleep 300  # 等待5分钟
-        echo "20 mins"
-        sleep 300  # 等待5分钟
-        echo "25 mins"
-        sleep 300  # 等待5分钟
-        echo "30 mins"
+        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=${addresses[$i]}" > /dev/null &
+        tail -f /root/XENGPUMiner/miner.log &
+        pid=$!
+        sleep 1800  # 等待30分钟
+        kill "$pid"
     done
 done
