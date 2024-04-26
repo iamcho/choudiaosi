@@ -902,29 +902,62 @@ addresses=(
 "0xe15376c50Fa5ab368065aB940E881e8e1DE80999	0x283875DE8991d2b5398666F50de02dFf47381000"
 "0x283875DE8991d2b5398666F50de02dFf47381000	0x00c1c2582bCA8c8D84c75BbB4A8877BbD6F81001"
 )
-
+# 定义计时器函数
+start_timer() {
+    local end_time=$((SECONDS + 1800))  # 1800秒 = 30分钟
+    while [ $SECONDS -lt $end_time ]; do
+        sleep 1
+    done
+}
 
 echo "loop"
 # 循环执行地址列表中的指令
 while true; do
-    for element in "${addresses[@]}"
-    do
-        echo $element
-        # 使用read命令将其分割成两个字符串
-        read first_part second_part <<< "$element"
-        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$second_part" > /dev/null &
-        cd XENGPUMiner
-        sudo chmod +x build.sh > /dev/null 2>&1
-        sudo ./build.sh > /dev/null 2>&1
-        sudo sed -i "s/account = $first_part/account = $second_part/g" config.conf > /dev/null 2>&1
-        sudo nohup python3 miner.py --gpu=true > miner.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d0 > xengpuminer-0.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d1 > xengpuminer-1.log 2>&1 &
-        tail -f /root/XENGPUMiner/miner.log &
-        pid=$!
-        sleep 3600  # 等待30分钟
-        kill "$pid"
+    for element in "${addresses[@]}";do
+        echo "$element"
+        read -r first_part second_part <<< "$element"
+        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=挖$second_part" > /dev/null &
+        # cd XENGPUMiner
+        # sudo chmod +x build.sh > /dev/null 2>&1
+        # sudo ./build.sh > /dev/null 2>&1
+        # sudo sed -i "s/account = $first_part/account = $second_part/g" config.conf > /dev/null 2>&1
+        # sudo nohup python3 miner.py --gpu=true > miner.log 2>&1 &
+        # sleep 1
+        # sudo nohup ./xengpuminer -d0 > xengpuminer-0.log 2>&1 &
+        # sleep 1
+        # sudo nohup ./xengpuminer -d1 > xengpuminer-1.log 2>&1 &
+        # sleep 1
+        # sudo nohup ./xengpuminer -d2 > xengpuminer-2.log 2>&1 &
+        # sleep 1
+        # sudo nohup ./xengpuminer -d3 > xengpuminer-3.log 2>&1 &
+        # sleep 1
+        # sudo nohup ./xengpuminer -d4 > xengpuminer-4.log 2>&1 &
+        # sleep 1
+        # sudo nohup ./xengpuminer -d5 > xengpuminer-5.log 2>&1 &
+        # sleep 1
+        # sudo nohup ./xengpuminer -d6 > xengpuminer-6.log 2>&1 &
+        # sleep 1
+        # sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
+        # tail -f /root/XENGPUMiner/miner.log
+        # pid=$!
+        # sleep 1800  # 等待30分钟
+        # kill "$pid"
+        # 进入目录并设置权限
+        (
+            cd XENGPUMiner
+            sudo chmod +x build.sh > /dev/null 2>&1
+            sudo ./build.sh > /dev/null 2>&1
+            sudo sed -i "s/account = $first_part/account = $second_part/g" config.conf > /dev/null 2>&1
+            sudo nohup python3 miner.py --gpu=true > miner.log 2>&1 &
+            sleep 1
+            for i in {0..7}; do
+                sudo nohup ./xengpuminer -d$i > "xengpuminer-$i.log" 2>&1 &
+                sleep 1
+            done
+            tail -f /root/XENGPUMiner/miner.log &
+            tail_pid=$!  # 记录 tail 进程的PID
+            start_timer  # 等待30分钟
+            kill "$tail_pid"  # 结束 tail 进程
+        )
     done
 done
