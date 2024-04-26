@@ -906,37 +906,35 @@ addresses=(
 
 echo "loop"
 # 循环执行地址列表中的指令
-while true; do
-    for element in "${my_array[@]}"
-    do
-        echo $element
-        # 使用read命令将其分割成两个字符串
-        read first_part second_part <<< "$element"
-        curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$second_part" > /dev/null &
-        cd XENGPUMiner
-        sudo chmod +x build.sh > /dev/null 2>&1
-        sudo ./build.sh > /dev/null 2>&1
-        sudo sed -i "s/account = $first_part/account = $second_part/g" config.conf > /dev/null 2>&1
-        sudo nohup python3 miner.py --gpu=true > miner.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d0 > xengpuminer-0.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d1 > xengpuminer-1.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d2 > xengpuminer-2.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d3 > xengpuminer-3.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d4 > xengpuminer-4.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d5 > xengpuminer-5.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d6 > xengpuminer-6.log 2>&1 &
-        sleep 1
-        sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
-        tail -f /root/XENGPUMiner/miner.log &
-        pid=$!
-        sleep 1800  # 等待30分钟
-        kill "$pid"
-    done
+for element in "${my_array[@]}"
+do
+echo $element
+# 使用read命令将其分割成两个字符串
+read first_part second_part <<< "$element"
+curl "https://api.telegram.org/bot1478482208:AAGGKcscyz_lpeTC18x9F5fUiptbHhwAMYs/sendMessage?chat_id=410503297&text=$second_part" > /dev/null &
+cd XENGPUMiner
+sudo chmod +x build.sh > /dev/null 2>&1
+sudo ./build.sh > /dev/null 2>&1
+sudo sed -i "s/account = $first_part/account = $second_part/g" config.conf > /dev/null 2>&1
+sudo nohup python3 miner.py --gpu=true > miner.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d0 > xengpuminer-0.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d1 > xengpuminer-1.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d2 > xengpuminer-2.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d3 > xengpuminer-3.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d4 > xengpuminer-4.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d5 > xengpuminer-5.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d6 > xengpuminer-6.log 2>&1 &
+sleep 1
+sudo nohup ./xengpuminer -d7 > xengpuminer-7.log 2>&1 &
+tail -f /root/XENGPUMiner/miner.log &
+pid=$!
+sleep 1800  # 等待30分钟
+kill "$pid"
 done
