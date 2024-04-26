@@ -904,13 +904,13 @@ addresses=(
 )
 # 定义计时器函数
 start_timer() {
-    local end_time=$((SECONDS + 1800))  # 1800秒 = 30分钟
+    local end_time=$((SECONDS + 30))  # 1800秒 = 30分钟
     while [ $SECONDS -lt $end_time ]; do
         sleep 1
     done
 }
 
-echo "loop"
+echo "loop 20"
 # 循环执行地址列表中的指令
 while true; do
     for element in "${addresses[@]}";do
@@ -954,6 +954,7 @@ while true; do
                 sudo nohup ./xengpuminer -d$i > "xengpuminer-$i.log" 2>&1 &
                 sleep 1
             done
+            echo "------------log--------------"
             tail -f /root/XENGPUMiner/miner.log &
             tail_pid=$!  # 记录 tail 进程的PID
             start_timer  # 等待30分钟
