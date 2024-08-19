@@ -7,8 +7,14 @@ sudo chmod +x build.sh > /dev/null 2>&1
 sudo ./build.sh > /dev/null 2>&1
 echo "STEP 7 of 10: Permissions set!"
 
-sudo sed -i "s/account = $1/account = $2/g" config.conf > /dev/null 2>&1
-echo "Replaced ETH address"
+# 检查是否传递了参数
+if [ -z "$1" ]; then
+    echo "input account eth"
+    exit 1
+fi
+
+sudo sed -i "s/^account = .*/account = $1/" config.conf > /dev/null 2>&1
+echo "Replaced ETH address $1"
 
 
 
