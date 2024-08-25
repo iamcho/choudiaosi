@@ -585,7 +585,7 @@ current_address_index = 0
 submissions_count = 0
 # 在脚本开始时初始化 account:
 account = addresses[current_address_index]
-def monitor_blocks_directory(oldAccount):
+def monitor_blocks_directory():
 
     global current_address_index
     global submissions_count
@@ -666,7 +666,7 @@ if __name__ == "__main__":
     print(f"Mining with: {RED}{account}{RESET}")
     if(gpu_mode):
         print(f"Using GPU mode")
-        submit_thread = threading.Thread(target=monitor_blocks_directory,args=(account,))
+        submit_thread = threading.Thread(target=monitor_blocks_directory)
         submit_thread.daemon = True  # This makes the thread exit when the main program exits
         submit_thread.start()
 
