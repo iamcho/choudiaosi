@@ -585,13 +585,11 @@ current_address_index = 0
 submissions_count = 0
 # 在脚本开始时初始化 account:
 account = addresses[current_address_index]
-def monitor_blocks_directory():
+def monitor_blocks_directory(oldAccount):
 
     global current_address_index
     global submissions_count
     global account
-
-
     global normal_blocks_count
     global super_blocks_count
     global xuni_blocks_count
